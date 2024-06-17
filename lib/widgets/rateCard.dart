@@ -32,8 +32,8 @@ class _rateCardState extends State<rateCard> {
     if (session != null && session.user != null) {
       final user = session.user!;
       userUUId = user.id;
-
     }
+    
   }
 
   Future <void> inserRate() async {
@@ -67,7 +67,6 @@ class _rateCardState extends State<rateCard> {
     }
   }
 
-
   void showAlertDialog() {
     AlertDialog (actions: [
       Text('У вас уже есть тариф!')
@@ -90,7 +89,7 @@ class _rateCardState extends State<rateCard> {
           ]
         ),
         margin: EdgeInsets.all(10),
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.all(20),
         width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +104,7 @@ class _rateCardState extends State<rateCard> {
                         color: Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      width: double.infinity,
+                      width: double.infinity - 10,
                       child: Image.network(widget.picture)),
                   ),
                   const SizedBox(height: 25),

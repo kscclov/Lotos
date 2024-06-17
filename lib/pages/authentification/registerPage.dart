@@ -4,7 +4,6 @@ import 'package:lotoss/pages/authentification/loginPage.dart';
 import 'package:lotoss/pages/bottomBar.dart';
 import 'package:lotoss/widgets/authButton.dart';
 import 'package:lotoss/widgets/mytextField.dart';
-import 'package:lotoss/widgets/squareTile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class registerPage extends StatefulWidget {
@@ -40,7 +39,23 @@ class _registerPageState extends State<registerPage> {
       }
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> botAppBar()));
     } on AuthException catch (e) {
-      print (e);
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Ошибка!'),
+            content: Text('Пароль должен содержать латинские буквы и цифры'),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 
@@ -98,14 +113,7 @@ class _registerPageState extends State<registerPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      squareTile(imagePath: 'assets/images/google.png'),
-                      SizedBox(width: 25),
-                      squareTile(imagePath: 'assets/images/apple.png'),
-                    ],
-                  ),
+
                   const SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

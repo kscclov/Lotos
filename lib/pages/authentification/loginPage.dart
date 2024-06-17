@@ -4,7 +4,6 @@ import 'package:lotoss/pages/authentification/registerPage.dart';
 import 'package:lotoss/pages/bottomBar.dart';
 import 'package:lotoss/widgets/authButton.dart';
 import 'package:lotoss/widgets/mytextField.dart';
-import 'package:lotoss/widgets/squareTile.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class loginPage extends StatefulWidget {
@@ -107,14 +106,6 @@ class _loginPageState extends State<loginPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      squareTile(imagePath: 'assets/images/google.png'),
-                      SizedBox(width: 25),
-                      squareTile(imagePath: 'assets/images/apple.png'),
-                    ],
-                  ),
                   const SizedBox(height: 25),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

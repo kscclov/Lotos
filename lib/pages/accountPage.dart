@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lotoss/main.dart';
 import 'package:lotoss/pages/authentification/loginPage.dart';
 import 'package:lotoss/widgets/cartOfClass.dart';
+import 'package:lotoss/widgets/form.dart';
 
 class accountPage extends StatefulWidget {
 
@@ -12,6 +13,8 @@ class accountPage extends StatefulWidget {
 }
 
 class _accountPageState extends State<accountPage> {
+
+  String? Email;
 
   late String firstName;
   late String userEmail;
@@ -29,6 +32,14 @@ class _accountPageState extends State<accountPage> {
     return (data as List).cast<Map<String, dynamic>>();
   }
 
+  Future<void> getUserUuid() async {
+    final session = supabase.auth.currentSession;
+    if (session != null && session.user != null) {
+      final user = session.user!;
+      Email = user.email!;
+      firstName = user.userMetadata!['first_name']!;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +72,7 @@ class _accountPageState extends State<accountPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                                            Text('Привет!',
+                          Text('Привет!',
                           style: TextStyle(
                           color: Colors.black87,
                           fontSize: 24,
@@ -103,6 +114,7 @@ class _accountPageState extends State<accountPage> {
                                 Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+
                                   const Text('Email:',
                                   style: TextStyle(
                                     color: Colors.black87,
@@ -110,15 +122,21 @@ class _accountPageState extends State<accountPage> {
                                     fontWeight: FontWeight.normal,
                                     ),                         
                                   ),
-                                  Text('danteffy15@gmail.com',
-                                  style: const TextStyle(
+                                  Text('$Email',
+                                  style: TextStyle(
                                     color: Color.fromARGB(255, 105, 59, 105),
                                     fontSize: 16,
                                     fontWeight: FontWeight.normal,
                                     ), 
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                     onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => form(bigTxt: 'Смена почты', smallTxt: 'Введите вашу старую почту для смены на новую', butTxt: 'Изменить почту', hint: 'Email'),
+                                            ),
+                                          );
+                                      },
                                     icon: Icon(Icons.arrow_forward_ios))
                                 ],
                               
@@ -141,7 +159,13 @@ class _accountPageState extends State<accountPage> {
                                     ), 
                                   ),
                                   IconButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => form(bigTxt: 'Смена имени', smallTxt: 'Введите ваше имя', butTxt: 'Переименоваться', hint: 'Имя'),
+                                            ),
+                                          );
+                                      },
                                     icon: Icon(Icons.arrow_forward_ios))
                                 ],
                               
@@ -157,7 +181,13 @@ class _accountPageState extends State<accountPage> {
                           ),                         
                         ),
                         IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => form(bigTxt: 'Смена пароля', smallTxt: 'Введите вашу почту для смены пароля', butTxt: 'Сбросить пароль', hint: 'Email'),
+                                            ),
+                                          );
+                                      },
                             icon: Icon(Icons.arrow_forward_ios))
                           ],                      
                         ),
@@ -177,49 +207,49 @@ class _accountPageState extends State<accountPage> {
                                   ),
                           ],
                         ),
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                                  const Text('Тариф:',
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    ),                         
-                                  ),
-                                  const Text('Пробный',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 105, 59, 105),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    ), 
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.arrow_forward_ios))
-                                ],
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                                    Text('Тариф:',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      ),                         
+                                    ),
+                                    Text(' ',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 105, 59, 105),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      ), 
+                                    ),
+                                  ],
+                          ),
                         ),
-                        Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                                  const Text('Количество\nзанятий:',
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    ),                         
-                                  ),
-                                  const Text('1',
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 105, 59, 105),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.normal,
-                                    ), 
-                                  ),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.arrow_forward_ios))
-                          ],
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                                    Text('Количество занятий:',
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      ),                         
+                                    ),
+                                    Text(' ',
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 105, 59, 105),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      ), 
+                                    ),
+                            ],
+                          ),
                         ),
                         Divider(
                           thickness: 0.5,
@@ -281,29 +311,29 @@ class _accountPageState extends State<accountPage> {
                                   ],
                           ),
                         ),
-                        Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[600],
-                        ),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text('Записи на занятия',
-                                    style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    ),
-                            ),
-                          ],
-                        ), 
-                        SizedBox(height: 10),
-                        const cartOfClass(
-                          nameClass: 'Хатха-йога',
-                          trainerName: 'Ангелина',
-                          startTime: '11:30',
-                          endTime: '12:30',
-                          picture: 'https://lanrdkcbbzeisqwpnjzf.supabase.co/storage/v1/object/public/avatars/1.png')                 
+                        // Divider(
+                        //   thickness: 0.5,
+                        //   color: Colors.grey[600],
+                        // ),
+                        // const Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     Text('Записи на занятия',
+                        //             style: TextStyle(
+                        //             color: Colors.black87,
+                        //             fontSize: 20,
+                        //             fontWeight: FontWeight.bold,
+                        //             ),
+                        //     ),
+                        //   ],
+                        // ), 
+                        // SizedBox(height: 10),
+                        // const cartOfClass(
+                        //   nameClass: 'Хатха-йога',
+                        //   trainerName: 'Ангелина',
+                        //   startTime: '11:30',
+                        //   endTime: '12:30',
+                        //   picture: 'https://lanrdkcbbzeisqwpnjzf.supabase.co/storage/v1/object/public/avatars/1.png')                 
                       ],              
                     ),
                   ),

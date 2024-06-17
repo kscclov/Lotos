@@ -8,6 +8,7 @@ import 'package:lotoss/pages/schedulePage.dart';
 class botAppBar extends StatefulWidget {
 
  final userId;
+ 
 
   const botAppBar({super.key, this.userId});
 

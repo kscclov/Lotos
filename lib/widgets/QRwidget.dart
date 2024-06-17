@@ -11,7 +11,7 @@ class QRwidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 170,
+        height: 150,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -27,7 +27,7 @@ class QRwidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +36,7 @@ class QRwidget extends StatelessWidget {
               textAlign: TextAlign.start,
                 style: TextStyle(
                 color: Colors.white,
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold
                 ),
               ),

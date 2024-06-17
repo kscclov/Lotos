@@ -116,14 +116,14 @@ class _classesPageState extends State<classesPage> {
                             )
                           ]
                         ),
-                        authButton(
-                          onTap:  () { Navigator.push(context,
-                              MaterialPageRoute(
-                                builder: (context) => botAppBar()
-                              ), 
-                            );
-                          },
-                          txt: 'Записаться на занятие'),
+                        // authButton(
+                        //   onTap:  () { Navigator.push(context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => botAppBar()
+                        //       ), 
+                        //     );
+                        //   },
+                        //   txt: 'Записаться на занятие'),
                           SizedBox(height: 40),
                       ]
                     )
